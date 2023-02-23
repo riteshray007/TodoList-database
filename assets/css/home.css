@@ -116,13 +116,12 @@ i{
 }
 
 .tasks{
-
     border-top: 1px solid black;
     margin: 5px 5px ;
     padding: 10px 1px ;
     position: relative;
 }
-.tasks input{
+.tasks  input{
     vertical-align: middle;
     margin-left: 10px;
     margin-right: 20px;

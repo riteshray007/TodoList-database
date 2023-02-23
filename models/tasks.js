@@ -6,12 +6,15 @@ const db = require('mongoose');
         required : true
     },
     date : {
-        type: String,
-        
+        type: String,        
     },
     category : {
         type : String,
-    }
+    },
+    checked :{
+        type : Boolean,
+        default : 'false'
+    } 
  })
 
  const Task = mongoose.model('Task' , taskSchema );

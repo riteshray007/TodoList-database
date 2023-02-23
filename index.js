@@ -32,9 +32,53 @@ app.get('/' , (req , res)=>{
 })
 
 app.get('/delete-task' , function(req , res){
-    console.log(selected_list);
-    return res.redirect('back')
+    // console.log(selected_list);
+    Task.deleteMany({checked : true } , (err )=>{
+        if(err){
+            console.log('error while  deleting ');
+            return ;
+        }
+    })
+    return res.redirect('back');
 } )
+
+
+app.get('/update-task' , (req , res )=>{
+    
+    let id = req.query.id;
+    let task = req.query.task;
+
+    Task.findByIdAndUpdate(id , {description : task } , (err , data)=>{
+        if(err){
+            console.log("error while updating description")
+            return ;
+        }
+    } )
+
+    return res.redirect('back');
+
+})
+app.get('/checked-task' , function(req , res ){
+    let id = req.query.id;
+
+    Task.findById(id , (err , data)=>{
+        if(err){
+            console.log(err);
+            return ;
+        }
+        console.log(data);
+            Task.findByIdAndUpdate(id , {checked : !data.checked } , function (err , data){
+                if(err){
+                    console.log('error while updating');
+                    return;
+                }
+            })
+        
+    })
+
+
+    return res.redirect('back');
+})
 
 app.post('/create-task' , (req , res)=>{
     console.log(req.body)

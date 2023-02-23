@@ -43,7 +43,7 @@
             </div>
                 <!-- <br> -->
                 <button class="centerx submit btn " type="submit" > <i class="fa-solid fa-square-plus"></i> ADD TASK</button>
-                <button class="centerx delete btn " > <i class="fa-solid fa-trash"></i> DELETE TASK</button>
+                <button type="button" class="centerx delete btn " > <i class="fa-solid fa-trash"></i> DELETE TASK</button>
 
             </form>
 
@@ -51,16 +51,25 @@
             <div class="taskscontainer centerx  " >
                 <% for(var task of tasks ){%>
                     <div class="tasks" >
-                        <input type="checkbox" id="deletecheck" iddata="<%= task._id %>" >
-                    <div class="tasklabel" spellcheck="false" contenteditable="false" >  <%= task.description %>  <i class="fa-solid fa-lock"></i>  </div>
+                        <!-- <a class="anchor" href="/checked-task" > -->
+                            <% if(task.checked === true){ %>
+                                <!-- <div class="category" > <%=task.category%> </div> -->
+                                <input type="checkbox" checked id="deletecheck" iddata="<%= task._id %>" >
+                            <% } else{ %>
+                                    <input type="checkbox"  id="deletecheck" iddata="<%= task._id %>" >
+                            <% } %>
+                                    
+
+                        <!-- </a> -->
+                    <div class="tasklabel" spellcheck="false" contenteditable="false" >  <%= task.description %>  <i iddata="<%= task._id %>" class="fa-solid fa-lock"></i>  </div>
                     <div class="duedate" ><i class="fa-regular fa-calendar-days"></i> <%=task.date%> </div>
                     <% if(task.category != 'none'){ %>
                         <div class="category" > <%=task.category%> </div>
                     <% } %>
                     </div>
                 <%  } %>
+            </div>
 
-    </div>
 
     <script src="https://kit.fontawesome.com/1949f1fc78.js" crossorigin="anonymous"></script>
     <script type="text/javascript"  src="/js/home.js" ></script>
