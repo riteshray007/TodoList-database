@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,600&family=Phudu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div class="background" >
+        <h2>TODO APP</h2>
+        <div class="todocont" >
+            <form action="/create-task" method="post" >
+                <div class="textbox" >
+
+                    <label for="description">DESCRIPTION: </label>
+                    <input type="text" id="description" placeholder=" what would u like to do ? " name="description" required>
+                    <!-- <textarea id="description" name="description" ></textarea> -->
+                </div>
+
+            <div class="categorydiv" >
+                <span class="dropdown">
+
+                    <label for="category">CATEGORY</label>
+                    <select name="category" id="category">
+                        <option  value="none" selected > choose a category </option>
+                        <option>personal</option>
+                        <option>home</option>
+                        <option>office</option>
+                        <option>school</option>
+                    </select>
+                </span>
+
+                <span class="datespan" >
+
+                    <label for="date">DUE DATE</label>
+                    <input required type="date" id="date" name="date" >
+                </span>
+            </div>
+                <!-- <br> -->
+                <button class="centerx submit btn " type="submit" > <i class="fa-solid fa-square-plus"></i> ADD TASK</button>
+                <button class="centerx delete btn " > <i class="fa-solid fa-trash"></i> DELETE TASK</button>
+
+            </form>
+
+
+            <div class="taskscontainer centerx  " >
+                <% for(var task of tasks ){%>
+                    <div class="tasks" >
+                        <input type="checkbox" id="deletecheck" iddata="<%= task._id %>" >
+                    <div class="tasklabel" spellcheck="false" contenteditable="false" >  <%= task.description %>  <i class="fa-solid fa-lock"></i>  </div>
+                    <div class="duedate" ><i class="fa-regular fa-calendar-days"></i> <%=task.date%> </div>
+                    <% if(task.category != 'none'){ %>
+                        <div class="category" > <%=task.category%> </div>
+                    <% } %>
+                    </div>
+                <%  } %>
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/1949f1fc78.js" crossorigin="anonymous"></script>
+    <script type="text/javascript"  src="/js/home.js" ></script>
+</body>
+</html>
