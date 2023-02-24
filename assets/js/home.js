@@ -39,7 +39,9 @@ function eventhandeler(e){
         // console.log(selected_list);
         window.location.href = `/checked-task/?id=${ID}`;
     }
-    
+    else if(t.classList.contains('theme')){
+        document.body.classList.toggle('secondtheme')
+    }
 
 }
 
